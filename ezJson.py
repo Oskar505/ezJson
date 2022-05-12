@@ -31,23 +31,20 @@ class EzJson:
         return objectValue
     
 
-    def update(self, arrayName, update):
+    def update(self, arrayName, newObject):
 
         # hard way to check if update is dict
         updateIsDict = False
         dictExample = {'aaa':'bbb'}
 
-        if type(update) == type(dictExample):
+        if type(newObject) == type(dictExample):
             updateIsDict = True
 
         assert updateIsDict, "'update' must be dictionary"
 
 
         temp = self.jsonData[arrayName]
-        temp.append(update)
+        temp.append(newObject)
 
         with open(self.fileName, 'w') as f:
             json.dump(self.jsonData, f, indent=4)
-
-
-ezJson = EzJson('data.json')
